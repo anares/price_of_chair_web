@@ -5,7 +5,7 @@ from src.models.stores.views import stores_blueprint
 from src.models.users.views import user_blueprint
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object('src.config')
 app.secret_key = "123"
 
 
