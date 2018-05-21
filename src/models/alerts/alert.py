@@ -2,7 +2,7 @@ import datetime
 import uuid
 
 from src.common.database import Database
-from src.common.utils import Utils
+from src.common.myutils import MyUtils
 import src.models.alerts.constants as AlertConstants
 from src.models.items.item import Item
 
@@ -20,7 +20,7 @@ class Alert(object):
         return "<Alert for {} on item {} with price {}>".format(self.user_email, self.item.name, self.price_limit)
 
     def send_alert(self):
-        return Utils.send_message(AlertConstants.URL, AlertConstants.API_KEY, AlertConstants.FROM,
+        return MyUtils.send_message(AlertConstants.URL, AlertConstants.API_KEY, AlertConstants.FROM,
                                   'Price Limit reached for {}'.format(self.item.name),
                                   'We found a deal! {}'.format(self.item.url))
 

@@ -3,7 +3,7 @@ import re
 import requests
 
 
-class Utils(object):
+class MyUtils(object):
 
     @staticmethod
     def hash_password(password):
@@ -29,8 +29,8 @@ class Utils(object):
 
     @staticmethod
     def email_is_valid(email):
-        email_address_matche = re.compile('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
-        return True if email_address_matche.match(email) else False
+        email_address_match = re.compile('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')
+        return True if email_address_match.match(email) else False
 
     @staticmethod
     def send_message(api_url, key, sender, receiver, subject, message):

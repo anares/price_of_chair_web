@@ -1,6 +1,6 @@
 import uuid
 from src.common.database import Database
-from src.common.utils import Utils
+from src.common.myutils import MyUtils
 import src.models.users.errors as UserErrors
 from src.models.alerts.alert import Alert
 import src.models.users.constants as UserConstants
@@ -27,7 +27,7 @@ class User(object):
         if user_data is None:
             # Tell the user that their e-mail doesn't exist
             raise UserErrors.UserNotExistsError("Your user does not exist")
-        if not Utils.check_hashed_password(password, user_data['password']):
+        if not MyUtils.check_hashed_password(password, user_data['password']):
             # Tell the user that their password is wrong
             raise UserErrors.IncorrectPasswordError("The password for this user is wrong")
         return True
@@ -45,10 +45,10 @@ class User(object):
         user_data = Database.find_one(UserConstants.COLLECTION, {'email':email})
         if user_data is not None:
             raise UserErrors.UserAlreadyRegisteredError('The user with this e-mail is already registered')
-        if not Utils.email_is_valid(email):
+        if not MyUtils.email_is_valid(email):
             raise UserErrors.InvalidEmailError('The e-mail does not have a valid format')
 
-        User(email, Utils.hash_password(password)).save_to_db()
+        User(email, MyUtils.hash_password(password)).save_to_db()
         return True
 
     def save_to_db(self):
