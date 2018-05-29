@@ -31,3 +31,5 @@ class Database(object):
     @staticmethod
     def remove(collection, query):
         Database.DATABASE[collection].remove(query)
+
+

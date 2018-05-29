@@ -5,3 +5,4 @@ passlib==1.7.1
 tldextract==2.2.0
 requests == 2.18.4
 uwsgi
+dnspython3
